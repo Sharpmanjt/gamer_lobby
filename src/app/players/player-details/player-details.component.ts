@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
 
@@ -7,8 +7,7 @@ import { PlayerService } from '../player.service';
   templateUrl: './player-details.component.html',
   styleUrls: ['./player-details.component.css']
 })
-export class PlayerDetailsComponent implements OnInit {
-
+export class PlayerDetailsComponent {
   @Input()
   player: Player;
 
@@ -38,7 +37,4 @@ export class PlayerDetailsComponent implements OnInit {
       this.deleteHandler(deletedPlayerId);
     })
   }
-  ngOnInit() {
-  }
-
 }
