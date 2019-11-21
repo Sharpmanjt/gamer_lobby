@@ -3,7 +3,7 @@ import { Player } from '../player';
 import { PlayerService } from '../player.service';
 
 @Component({
-  selector: 'app-player-details',
+  selector: 'player-details',
   templateUrl: './player-details.component.html',
   styleUrls: ['./player-details.component.css']
 })
