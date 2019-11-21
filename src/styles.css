@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+.form {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    /* width: 100%; */
+    margin: 10px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+}

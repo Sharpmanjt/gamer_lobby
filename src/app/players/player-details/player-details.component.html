@@ -1,7 +1,8 @@
-<div *ngIf="player" class="row">
+<div *ngIf="player" class="form">
+  <div *ngIf="player" class="row">
     <div class="col-md-12">
-      <h2 *ngIf="player._id">Player Details</h2>
-      <h2 *ngIf="!player._id">New Player</h2>
+      <h2 *ngIf="player._id">Edit Player</h2>
+      <h2 *ngIf="!player._id">Add Player</h2>
     </div>
   </div>
   <div *ngIf="player" class="row">
@@ -12,7 +13,7 @@
       </div>
       <div class="form-group">
         <label for="player-rank">Rank</label>
-        <select name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
+        <select  class="form-control" name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
             <option>1</option><option>2</option>
             <option>3</option><option>4</option>
             <option>5</option><option>6</option>
@@ -39,8 +40,9 @@
             <option>Unavailable</option>
         </select>
       </div>
-      <button class="btn btn-primary" *ngIf="!player._id" (click)="createPlayer(player)">Create</button>
+      <button class="btn btn-primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
       <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
-      <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>
+      <button class="btn btn-danger">Cancel</button>
     </form>
   </div>
+</div>

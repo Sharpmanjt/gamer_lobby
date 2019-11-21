@@ -6,10 +6,15 @@
           <th *ngFor="let col of columns">
             {{col}}
           </th>
+          <th>Actions</th>
         </tr>
         <tr *ngFor="let player of players">
-          <td *ngFor="let col of keyColumns">
+          <td *ngFor="let col of keyColumns" (click)="selectPlayer(player)" >
             {{player[col]}}
+          </td>
+          <td>
+              <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
+              <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>
           </td>
         </tr>
       </table>
