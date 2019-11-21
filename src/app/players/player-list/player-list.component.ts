@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
 import { PlayerDetailsComponent } from '../player-details/player-details.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'player-list',
@@ -13,6 +14,8 @@ export class PlayerListComponent implements OnInit {
 
   players: Player[]
   selectedPlayer: Player
+  columns: string[]
+  keyColumns: string[]
 
   constructor(private playerService: PlayerService) { }
 
@@ -21,14 +24,12 @@ export class PlayerListComponent implements OnInit {
       .getPlayers()
       .then((players: Player[]) => {
         this.players = players.map((player) => {
-          // if (!contact.phone) {
-          //   contact.phone = {
-          //     mobile: '',
-          //     work: ''
-          //   }
-          // }
           return player;
         })
+        this.columns = this.playerService.getColumns();
+        this.keyColumns = this.playerService.getColumns().map(column => {
+          return _.camelCase(column);
+        });
       })
   }
 
@@ -48,7 +49,7 @@ export class PlayerListComponent implements OnInit {
       rank: '',
       score: 0,
       time: '',
-      favorite_game: '',
+      favoriteGame: '',
       status: ''
     };
 

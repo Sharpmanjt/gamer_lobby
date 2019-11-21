@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Player } from './player';
 import { Http, Response } from '@angular/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PlayerService {
   private playersUrl = '/api/players';
 
@@ -16,6 +14,10 @@ export class PlayerService {
                .toPromise()
                .then(response => response.json() as Player[])
                .catch(this.handleError);
+  }
+
+  getColumns(): string[] {
+    return ["Name","Rank","Score","Time","Favorite Game","Status"]
   }
 
   // post("/api/players")

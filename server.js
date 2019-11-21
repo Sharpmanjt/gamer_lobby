@@ -8,7 +8,6 @@ var PLAYERS_COLLECTION = "players";
 var app = express();
 app.use(bodyParser.json());
 
-// Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 

@@ -10,32 +10,35 @@
         <label for="player-name">Name</label>
         <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name"/>
       </div>
-
       <div class="form-group">
         <label for="player-rank">Rank</label>
-        <input class="form-control" name="player-rank" [(ngModel)]="player.rank" placeholder="Rank"/>
+        <select name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
+            <option>1</option><option>2</option>
+            <option>3</option><option>4</option>
+            <option>5</option><option>6</option>
+            <option>7</option><option>8</option>
+            <option>9</option><option>10</option>
+        </select>
       </div>
-
       <div class="form-group">
         <label for="player-Score">Score</label>
         <input class="form-control" name="player-score" [(ngModel)]="player.score" placeholder="Score"/>
       </div>
-
       <div class="form-group">
         <label for="player-time">Time</label>
         <input class="form-control" name="player-time" [(ngModel)]="player.time" placeholder="Time"/>
       </div>
-
       <div class="form-group">
         <label for="player-favorite-game">Favorite Game</label>
-        <input class="form-control" name="player-favorite-game" [(ngModel)]="player.favorite-game" placeholder="Favorite Game"/>
+        <input class="form-control" name="player-favorite-game" [(ngModel)]="player.favoriteGame" placeholder="Favorite Game"/>
       </div>
-
       <div class="form-group">
         <label for="player-status">Status</label>
-        <input class="form-control" name="player-status" [(ngModel)]="player.status" placeholder="Status"/>
+        <select class="form-control" name="player-status" [(ngModel)]="player.status" placeholder="Status">
+            <option>Available</option>
+            <option>Unavailable</option>
+        </select>
       </div>
-
       <button class="btn btn-primary" *ngIf="!player._id" (click)="createPlayer(player)">Create</button>
       <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
       <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>

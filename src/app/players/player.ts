@@ -4,6 +4,6 @@ export class Player {
     rank: string;
     score: number;
     time: string;
-    favorite_game: string;
+    favoriteGame: string;
     status: string;
 }
