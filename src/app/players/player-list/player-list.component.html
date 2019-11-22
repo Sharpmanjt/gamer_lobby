@@ -48,7 +48,7 @@
             <button mat-button color="primary" (click)="updatePlayer(player)">Update</button>
             <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
             
-            <button *ng-if="player.status=='Available'" mat-button color="warn" (click)="joingame(player._id)">Join Game</button>
+            <button mat-button color="warn" (click)="joingame(player._id)">Join Game</button>
         </td>
     </ng-container>
   
