@@ -42,6 +42,7 @@
       </div>
       <button class="btn btn-primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
       <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
+      <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>
       <button class="btn btn-danger">Cancel</button>
     </form>
   </div>

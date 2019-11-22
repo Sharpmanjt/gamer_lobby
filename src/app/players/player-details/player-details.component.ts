@@ -7,6 +7,7 @@ import { PlayerService } from '../player.service';
   templateUrl: './player-details.component.html',
   styleUrls: ['./player-details.component.css']
 })
+
 export class PlayerDetailsComponent {
   @Input()
   player: Player;
@@ -29,12 +30,12 @@ export class PlayerDetailsComponent {
   updatePlayer(player: Player): void {
     this.playerService.updatePlayer(player).then((updatedPlayer: Player) => {
       this.updateHandler(updatedPlayer);
-    })
+    });
   }
 
   deletePlayer(playerId: String): void {
     this.playerService.deletePlayer(playerId).then((deletedPlayerId: String) => {
       this.deleteHandler(deletedPlayerId);
-    })
+    });
   }
 }
