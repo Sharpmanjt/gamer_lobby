@@ -7,6 +7,16 @@ import { AppComponent } from './app.component';
 import { PlayerListComponent } from './players/player-list/player-list.component';
 import { PlayerDetailsComponent } from './players/player-details/player-details.component';
 
+import {  MatTabsModule, 
+          MatButtonModule, 
+          MatTableModule, 
+          MatFormFieldModule, 
+          MatInputModule,
+          MatDialogModule
+        } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CdkColumnDef } from '@angular/cdk/table';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,9 +26,18 @@ import { PlayerDetailsComponent } from './players/player-details/player-details.
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    CdkColumnDef
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

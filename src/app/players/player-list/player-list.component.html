@@ -1,4 +1,69 @@
-<div class="row">
+<div class="search-add">
+  <mat-form-field class="search">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <button mat-raised-button class="add-btn" (click)="createNewPlayer()">Add New Player</button>
+</div>
+<table mat-table *ngIf="players" [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Player Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Player </th>
+      <td mat-cell *matCellDef="let player"> {{player.name}} </td>
+    </ng-container>
+  
+    <!-- Rank Column -->
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell *matHeaderCellDef> Rank </th>
+      <td mat-cell *matCellDef="let player"> {{player.rank}} </td>
+    </ng-container>
+  
+    <!-- Score Column -->
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef> Score </th>
+      <td mat-cell *matCellDef="let player"> {{player.score}} </td>
+    </ng-container>
+  
+    <!-- Time Column -->
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let player"> {{player.time}} </td>
+    </ng-container>
+
+    <!-- Favorite Game Column -->
+    <ng-container matColumnDef="favoriteGame">
+        <th mat-header-cell *matHeaderCellDef> Favorite Game </th>
+        <td mat-cell *matCellDef="let player"> {{player.favoriteGame}} </td>
+    </ng-container>
+
+      <!-- Status Column -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let player"> {{player.status}} </td>
+    </ng-container>
+
+      <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let player">
+            <button mat-button color="primary" (click)="updatePlayer(player)">Update</button>
+            <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<div class="col-md-5 col-md-offset-2">
+    <player-details
+      [player]="selectedPlayer"
+      [createHandler]="addPlayer"
+      [updateHandler]="updatePlayer"
+      [deleteHandler]="deletePlayer">
+    </player-details>
+</div>
+
+<!-- <div class="row">
     <div class="col-md-5">
       <h2>Players</h2>
       <table>
@@ -6,22 +71,20 @@
           <th *ngFor="let col of columns">
             {{col}}
           </th>
+          <th>
+            Actions
+          </th>
         </tr>
         <tr *ngFor="let player of players">
           <td *ngFor="let col of keyColumns" (click)="selectPlayer(player)" >
             {{player[col]}}
           </td>
+          <td>
+            <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
+            <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>
+          </td>
         </tr>
       </table>
-
-      <!-- <ul class="list-group">
-        <li class="list-group-item"
-          *ngFor="let player of players"
-          (click)="selectPlayer(player)"
-          [class.active]="player === selectedPlayer">
-          {{player.name}}
-        </li>
-      </ul> -->
       <button class="btn btn-warning" (click)="createNewPlayer()">New</button>
     </div>
     <div class="col-md-5 col-md-offset-2">
@@ -32,4 +95,4 @@
         [deleteHandler]="deletePlayer">
       </player-details>
     </div>
-  </div>
+  </div> -->

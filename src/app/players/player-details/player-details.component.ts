@@ -28,14 +28,19 @@ export class PlayerDetailsComponent {
   }
 
   updatePlayer(player: Player): void {
+    this.player = player;
     this.playerService.updatePlayer(player).then((updatedPlayer: Player) => {
       this.updateHandler(updatedPlayer);
     });
   }
 
-  deletePlayer(playerId: String): void {
-    this.playerService.deletePlayer(playerId).then((deletedPlayerId: String) => {
-      this.deleteHandler(deletedPlayerId);
-    });
-  }
+  // deletePlayer(playerId: String): void {
+  //   this.playerService.deletePlayer(playerId).then((deletedPlayerId: String) => {
+  //     this.deleteHandler(deletedPlayerId);
+  //   });
+  // }
+
+  // cancel() {
+  //   this.player = null;
+  // }
 }

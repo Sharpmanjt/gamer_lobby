@@ -3,6 +3,7 @@ import { Player } from '../player';
 import { PlayerService } from '../player.service';
 import { PlayerDetailsComponent } from '../player-details/player-details.component';
 import * as _ from 'lodash';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'player-list',
@@ -11,26 +12,27 @@ import * as _ from 'lodash';
   providers: [PlayerService]
 })
 export class PlayerListComponent implements OnInit {
-
   players: Player[]
   selectedPlayer: Player
-  columns: string[]
-  keyColumns: string[]
+  displayedColumns: string[] = ['name', 'rank', 'score', 'time', 'favoriteGame', 'status', 'actions']
+  dataSource: any;
 
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
+    this.getPlayers();
+  }
+
+  getPlayers() {
     this.playerService
-      .getPlayers()
-      .then((players: Player[]) => {
-        this.players = players.map((player) => {
-          return player;
-        })
-        this.columns = this.playerService.getColumns();
-        this.keyColumns = this.playerService.getColumns().map(column => {
-          return _.camelCase(column);
-        });
+    .getPlayers()
+    .then((players: Player[]) => {
+      this.players = players.map((player) => {
+        return player;
       })
+      this.dataSource = new MatTableDataSource(players);
+    })
+    return this.players;
   }
 
   private getIndexOfPlayer = (playerId: String) => {
@@ -57,18 +59,21 @@ export class PlayerListComponent implements OnInit {
   }
 
   deletePlayer = (playerId: String) => {
-    var idx = this.getIndexOfPlayer(playerId);
-    if (idx !== -1){
-      this.players.splice(idx, 1);
-      this.selectPlayer(null);
-    }
-    return this.players;
+    this.playerService.deletePlayer(playerId).then(() => {
+      this.getPlayers();
+    });
+    // var idx = this.getIndexOfPlayer(playerId);
+    // if (idx !== -1) {
+    //   this.players.splice(idx, 1);
+    //   this.selectPlayer(null);
+    // }
+    // return this.players;
   }
 
   addPlayer = (player: Player) => {
-    this.players.push(player);
+    // this.players.push(player);
     this.selectPlayer(player);
-    return this.players;
+    this.getPlayers();
   }
 
   updatePlayer = (player: Player) => {
@@ -80,4 +85,8 @@ export class PlayerListComponent implements OnInit {
     return this.players;
   }
 
+  //filtering of table
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

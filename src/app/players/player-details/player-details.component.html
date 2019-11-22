@@ -40,10 +40,9 @@
             <option>Unavailable</option>
         </select>
       </div>
-      <button class="btn btn-primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
-      <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
-      <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>
-      <button class="btn btn-danger">Cancel</button>
+      <button mat-raised-button color="primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
+      <button mat-raised-button color="primary" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
+      <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
     </form>
   </div>
 </div>
