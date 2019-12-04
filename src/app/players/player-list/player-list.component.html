@@ -48,8 +48,14 @@
             <button mat-button color="primary" (click)="updatePlayer(player)">Update</button>
             <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
             
-            <button *ngIf="player.status=='Available'" mat-button color="warn" (click)="joingame(player._id)">Join Game</button>
+            <div *ngIf="User.role=='User'">
+              <button *ngIf="player.status=='Available'" mat-button color="warn" (click)="joingame(player._id)">Join Game</button>
+            </div>
         </td>
+        <div *ngIf="User.role=='Admin'">
+          <td><button mat-button color="warn">Update</button></td>
+          <td><button mat-button color="warn">Delete</button></td>
+        </div>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
