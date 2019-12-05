@@ -4,8 +4,7 @@ export class Game {
     platform: string;
     genre: string;
     rating: number;
-    publisher: number;
-    release: number;
+    publisher: string;
+    release: string;
     status: boolean;
-
 }

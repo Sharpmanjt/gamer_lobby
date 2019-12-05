@@ -36,4 +36,53 @@ export class GameListComponent implements OnInit {
   return this.games;
   }
 
+  private getIndexOfGame = (gameId: number) => {
+    return this.games.findIndex((game) => {
+      return game._id === gameId;
+    })
+  }
+
+  selectGame(game: Game){
+    this.selectedGame = game;
+  }
+
+  createNewGame()
+  {
+    var game: Game = {
+      title: "",
+      platform:  "",
+      genre:  "",
+      rating: 1,
+      publisher: "",
+      release: "",
+      status: false
+    }
+
+    this.selectedGame = game;
+  }
+
+  deleteGame = (gameID: String) => {
+    this.gameService.deleteGame(gameID).then(() => {
+      this.getGames();
+    });
+  }
+
+
+  addGame = (game: Game) => {
+    this.selectGame(game);
+    this.getGames();
+  }
+
+  updateGame = (game:Game) => {
+    var index = this.getIndexOfGame(game._id);
+    if(index !== -1){
+      this.games[index] = game;
+      this.selectGame(game);
+    }
+    return this.games;
+  }
+
+  applyFilter(key: String){
+    this.dataSource.filter = key.trim().toLowerCase();
+  }
 }
