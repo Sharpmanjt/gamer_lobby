@@ -1,1 +1,69 @@
+<div *ngIf="game" class="form">
+    <div *ngIf="game" class="row">
+        <div class="col-md-12">
+            <h2 *ngIf="game._id">Edit Game</h2>
+            <h2 *ngIf="!game._id">Add Game</h2>
+        </div>
+    </div>
+<div *ngIf="game" class="row">
+    <form class="col-md-12">
 
+        <div class="form-group">
+            <label for="game-title">Title:</label>
+            <input class="form-control" name="game-title" [(ngModel)]="game.title" placeholder="Title"/>
+        </div>
+
+        <div class="form-group">
+                <label for="game-platform">Platform:</label>
+                <input class="form-control" name="game-platform" [(ngModel)]="game.platform" placeholder="Platform"/>
+            </div>
+
+            <div class="form-group">
+                    <label for="game-genre">Genre:</label>
+                    <select class="form-control" name="game-genre" [(ngModel)]="game.genre" placeholder="Genre">
+                            <option selected="selected">Action</option>
+                            <option>Action-Adventure</option>
+                            <option>RPG</option>
+                            <option>FPS</option>
+                            <option>Puzzle</option>
+                            <option>Sports</option>
+                            <option>Strategy</option>
+                    </select>
+                </div>
+            
+            <div class="form-group">
+                    <label for="game-rating">Rating:</label>
+                    <select class="form-control" name="game-rating" [(ngModel)]="game.rating" placeholder="Rating">
+                        <option selected="selected">1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+            </div>
+
+            <div class="form-group">
+                    <label for="game-publisher">Publisher:</label>
+                    <input class="form-control" name="game-publisher" [(ngModel)]="game.publisher" placeholder="Publisher"/>
+            </div>
+
+        
+            <div class="form-group">
+                    <label for="game-release">Platform:</label>
+                    <input class="form-control" name="game-release" [(ngModel)]="game.release" placeholder="Release"/>
+            </div>
+        
+            <div class="form-group">
+                    <label for="game-available">Available:</label>
+                    <select class="form-control" name="game-available" [(ngModel)]="game.available" placeholder="Available">
+                            <option selected="selected">True</option>
+                        <option>False</option>
+                    </select>
+            </div>
+            
+        
+            <button type="submit" value="submit">Save</button>
+            <button value="cancel">Cancel</button>
+        </form>
+    </div>
+</div>
