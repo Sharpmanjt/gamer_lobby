@@ -8,13 +8,13 @@
         <form class="col-md-12">
         <div class="form-group">
             <label for="player-name">Username</label>
-            <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name"/>
+            <input class="form-control" name="username" />
         </div>
         <div class="form-group">
             <label for="player-rank">Password</label>
-            <input type="password" class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name"/>
+            <input type="password" class="form-control" />
         </div>
-        <button mat-raised-button color="primary" *ngIf="!player._id" (click)="createPlayer(player)">Login</button>
+        <button mat-raised-button color="primary" (click)="login(user)">Login</button>
         </form>
     </div>
 </div>

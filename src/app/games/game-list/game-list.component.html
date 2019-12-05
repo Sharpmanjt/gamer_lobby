@@ -1,6 +1,11 @@
+<div class="search-add">
+  <mat-form-field class="search">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <button mat-raised-button class="add-btn" (click)="createNewGame()">Add New Game</button>
+</div>
 
-
-<table *ngIf="games" [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table *ngIf="games" [dataSource]="dataSource" class="mat-elevation-z8">
     
     <!--Title Column-->
     <ng-container matColumnDef="title">
