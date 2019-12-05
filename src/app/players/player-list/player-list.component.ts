@@ -88,5 +88,6 @@ export class PlayerListComponent implements OnInit {
   //filtering of table
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
   }
 }

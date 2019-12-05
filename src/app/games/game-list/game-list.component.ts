@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Game} from '../game';
 import { GameService } from '../game.service';
+import * as _ from 'lodash';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'game-list',
@@ -9,9 +12,28 @@ import { GameService } from '../game.service';
 })
 export class GameListComponent implements OnInit {
 
-  constructor() { }
+  games: Game[];
+  selectedGame: Game;
+  displayedColumns: string[] = ["Title","Platform","Genre","Rating","Publisher","Release", "Status"];
+  dataSource: any;
+
+
+  constructor(private gameService: GameService) { }
 
   ngOnInit() {
+    this.getGames();
+  }
+
+  getGames(){
+    this.gameService.getGames()
+    .then((games: Game[]) => {
+    this.games = games.map((game) => {
+      return game;
+    })
+
+    this.dataSource = new MatTableDataSource(games);
+  })
+  return this.games;
   }
 
 }
