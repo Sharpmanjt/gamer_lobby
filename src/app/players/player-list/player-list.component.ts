@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
-// import { PlayerDetailsComponent } from '../player-details/player-details.component';
+import { PlayerDetailsComponent } from '../player-details/player-details.component';
 import * as _ from 'lodash';
 import { MatTableDataSource } from '@angular/material/table';
 

@@ -6,7 +6,8 @@ import { Http, Response } from '@angular/http';
 export class PlayerService {
   private playersUrl = '/api/players';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    }
 
   // get("/api/players")
   getPlayers(): Promise<void | Player[]> {
