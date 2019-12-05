@@ -1,0 +1,21 @@
+<div *ngIf="player" class="form">
+    <div *ngIf="player" class="row">
+        <div class="col-md-12">
+            <h2>Administrator Login</h2>
+        </div>
+    </div>
+    <div class="row">
+        <form class="col-md-12">
+        <div class="form-group">
+            <label for="player-name">Username</label>
+            <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name"/>
+        </div>
+        <div class="form-group">
+            <label for="player-rank">Password</label>
+            <input type="password" class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name"/>
+        </div>
+        <button mat-raised-button color="primary" *ngIf="!player._id" (click)="createPlayer(player)">Login</button>
+        </form>
+    </div>
+</div>
+      

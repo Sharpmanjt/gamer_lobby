@@ -16,12 +16,20 @@ import {  MatTabsModule,
         } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkColumnDef } from '@angular/cdk/table';
+import { AdminLoginComponent } from './users/admin-login/admin-login.component';
+import { GameListComponent } from './games/game-list/game-list.component';
+import { GameDetailsComponent } from './games/game-details/game-details.component';
+import { LoginButtonComponent } from './users/login-button/login-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerListComponent,
-    PlayerDetailsComponent
+    PlayerDetailsComponent,
+    AdminLoginComponent,
+    GameListComponent,
+    GameDetailsComponent,
+    LoginButtonComponent
   ],
   imports: [
     BrowserModule,

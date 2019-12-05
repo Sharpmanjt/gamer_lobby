@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Player } from './player';
 import { Http, Response } from '@angular/http';
-import {User} from './user';
 
 @Injectable()
 export class PlayerService {

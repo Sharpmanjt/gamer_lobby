@@ -1,0 +1,11 @@
+/* .header-container {
+    display: table;
+} */
+
+.menu {
+    float: left;
+}
+
+.button {
+    float: right;
+}

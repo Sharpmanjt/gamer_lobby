@@ -1,11 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { PlayerListComponent } from './players/player-list/player-list.component';
+import { GameListComponent } from './games/game-list/game-list.component';
+import { LoginButtonComponent } from './users/login-button/login-button.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        PlayerListComponent,
+        GameListComponent,
+        LoginButtonComponent
       ],
     }).compileComponents();
   }));
