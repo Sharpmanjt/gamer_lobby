@@ -15,6 +15,7 @@ export class PlayerService {
                .toPromise()
                .then(response => response.json() as Player[])
                .catch(this.handleError);
+            
   }
 
   getColumns(): string[] {
