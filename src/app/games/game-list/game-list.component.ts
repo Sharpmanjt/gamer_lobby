@@ -61,7 +61,7 @@ export class GameListComponent implements OnInit {
     this.selectedGame = game;
   }
 
-  deleteGame = (gameID: String) => {
+  deleteGame = (gameID: number) => {
     this.gameService.deleteGame(gameID).then(() => {
       this.getGames();
     });

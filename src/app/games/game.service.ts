@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {Game} from './game';
 import { Http, Response } from '@angular/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GameService {
 
   private gamesUrl = '/api/games';
@@ -30,10 +28,10 @@ export class GameService {
                .catch(this.handleError);
   }
 
-  deleteGame(delGameId: String): Promise<void | String> {
+  deleteGame(delGameId: number): Promise<void | number> {
     return this.http.delete(this.gamesUrl + '/' + delGameId)
                .toPromise()
-               .then(response => response.json() as String)
+               .then(response => response.json() as number)
                .catch(this.handleError);
   }
 
