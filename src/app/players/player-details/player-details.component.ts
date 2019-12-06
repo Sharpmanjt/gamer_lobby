@@ -36,11 +36,7 @@ export class PlayerDetailsComponent implements OnInit{
     this.route.data.subscribe(data => {
       switch (data.kind){
         case "add":
-<<<<<<< HEAD
-          this.player = { name: '', rank: '', score: null, time: null, favoriteGame: '', status: -1 };
-=======
-          this.player = { name: '', rank: '', score: 0, time: '', favoriteGame: '', status: '', currentGame: '' };
->>>>>>> 9503268ffd59d05a42bb3cb90083ceb1858d3c1e
+          this.player = { name: '', rank: '', score: '', time: '', favoriteGame: '', status: -1, currentGame: '' };
           break;
         case "update":
           this.getPlayer();
