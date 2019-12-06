@@ -14,6 +14,9 @@ import { PlayerDetailsComponent } from './players/player-details/player-details.
 import { PlayerListComponent } from './players/player-list/player-list.component';
 import { AdminLoginComponent } from './users/admin-login/admin-login.component';
 
+import { PlayerService } from './players/player.service';
+import { GameService } from './games/game.service';
+
 import {  
   MatTabsModule, 
   MatButtonModule, 
@@ -25,11 +28,12 @@ import {
 
 const routes: Routes = [
   { path: '', redirectTo: '/playerList', pathMatch: 'full'},
-  // { path: 'dashboard', component: DashboardComponent },
   { path: 'gameList', component: GameListComponent },
-  { path: 'gameDetail/:id', component: GameDetailsComponent },
+  { path: 'updateGame/:id', component: GameDetailsComponent, data: { kind: 'update'}  },
+  { path: 'addGame', component: GameDetailsComponent, data: { kind: 'add'} },
   { path: 'playerList', component: PlayerListComponent },
-  { path: 'playerDetail/:id', component: PlayerDetailsComponent },
+  { path: 'updatePlayer/:id', component: PlayerDetailsComponent, data: { kind: 'update'} },
+  { path: 'addPlayer', component: PlayerDetailsComponent, data: { kind: 'add'} },
   { path: 'login', component: AdminLoginComponent }
 ];
 
@@ -59,7 +63,9 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
-    CdkColumnDef
+    CdkColumnDef,
+    PlayerService,
+    GameService
   ]
 })
 export class AppRoutingModule { }

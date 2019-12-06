@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Game } from '../game';
 import { GameService } from '../game.service';
-import { GameListComponent } from '../game-list/game-list.component';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -10,56 +10,62 @@ import { Location } from '@angular/common';
   styleUrls: ['./game-details.component.css']
 })
 export class GameDetailsComponent implements OnInit {
-
   @Input()
   game: Game;
-  gl: GameListComponent;
   errormsg: String;
-  @Input()
-  createHandler: Function;
 
-  @Input()
-  updateHandler: Function;
+  constructor(
+    private gameService: GameService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) {  }
 
-  @Input()
-  deleteHandler: Function;
-
-  constructor(private gameService: GameService) {  }
-
-    createGame(game: Game){
-
-      if(game.title=="")
-      {
-        console.log("error");
-        this.errormsg = "no title";
+  ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      switch (data.kind){
+        case "add":
+          this.game = { title: "", platform:  "", genre:  "", rating: 1, 
+            publisher: "", release: "", status: false }
+          break;
+        case "update":
+          this.getGame();
+          break;
       }
-      else{
-        this.gameService.createGame(game).then((newGame: Game) =>{
-          this.createHandler(newGame);
-        })
-      }
-    }
-
-    updateGame(game: Game){
-      this.gameService.updateGame(game).then((updatedGame: Game) => {
-      this.updateHandler(updatedGame);
-    });
+    })  
   }
-    deleteGame(gameId: number)
+
+  getGame() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.gameService
+    .getGame(id)
+    .then((game: Game) => {
+      this.game = game;
+    })
+    return this.game;
+  }
+
+  createGame(game: Game){
+    if(game.title=="")
     {
-      this.gameService.deleteGame(gameId).then((deletedGameId: number) =>{
-        this.deleteHandler(deletedGameId)
+      console.log("error");
+      this.errormsg = "no title";
+    }
+    else{
+      this.gameService.createGame(game).then((newGame: Game) =>{
+        this.router.navigate(['/gameList']);
       })
     }
-  
-    cancel()
-    {
-      //window.location.href = '';
-      console.log('back');
-      window.location.reload;
-    }
-
-  ngOnInit() {
   }
 
+  updateGame(game: Game){
+    this.game = game;
+    this.gameService.updateGame(game).then((updatedGame: Game) => {
+      this.router.navigate(['/gameList']);
+    });
+  }
+  
+  cancel(): void {
+    this.location.back();
+  }
 }

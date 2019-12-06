@@ -9,6 +9,15 @@ export class PlayerService {
   constructor(private http: Http) {
     }
 
+  // get("/api/player/:id")
+  getPlayer(playerId: String): Promise<void | Player> {
+    return this.http.get(this.playersUrl + "/" + playerId)
+               .toPromise()
+               .then(response => response.json() as Player)
+               .catch(this.handleError);
+            
+  }
+
   // get("/api/players")
   getPlayers(): Promise<void | Player[]> {
     return this.http.get(this.playersUrl)
@@ -29,8 +38,6 @@ export class PlayerService {
                .then(response => response.json() as Player)
                .catch(this.handleError);
   }
-
-  // get("/api/players/:id") endpoint not used by Angular app
 
   // delete("/api/players/:id")
   deletePlayer(delPlayerId: String): Promise<void | String> {

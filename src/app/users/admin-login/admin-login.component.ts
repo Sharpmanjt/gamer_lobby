@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'admin-login',
@@ -18,12 +19,19 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private location: Location
+    ) { }
 
   login(user: User){
     // check database
     // if true:
     localStorage.set("admin", true);
     // else: return message
+  }
+
+  cancel(): void {
+    this.location.back();
   }
 }

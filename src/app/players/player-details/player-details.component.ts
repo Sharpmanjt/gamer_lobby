@@ -1,46 +1,62 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'player-details',
   templateUrl: './player-details.component.html',
   styleUrls: ['./player-details.component.css']
 })
-
-export class PlayerDetailsComponent {
+export class PlayerDetailsComponent implements OnInit{
   @Input()
   player: Player;
 
-  @Input()
-  createHandler: Function;
-  @Input()
-  updateHandler: Function;
-  @Input()
-  deleteHandler: Function;
+  constructor(
+    private playerService: PlayerService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) { }
 
-  constructor(private playerService: PlayerService) { }
+  ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      switch (data.kind){
+        case "add":
+          this.player = { name: '', rank: '', score: 0, time: '', favoriteGame: '', status: '' };
+          break;
+        case "update":
+          this.getPlayer();
+          break;
+      }
+    })  
+  }
 
+  getPlayer() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.playerService
+    .getPlayer(id)
+    .then((player: Player) => {
+      this.player = player;
+    })
+    return this.player;
+  }
+  
   createPlayer(player: Player){
     this.playerService.createPlayer(player).then((newPlayer: Player) => {
-      this.createHandler(newPlayer);
+      this.router.navigate(['/playerList']);
     });
   }
 
   updatePlayer(player: Player): void {
     this.player = player;
     this.playerService.updatePlayer(player).then((updatedPlayer: Player) => {
-      this.updateHandler(updatedPlayer);
+      this.router.navigate(['/playerList']);
     });
   }
 
-  // deletePlayer(playerId: String): void {
-  //   this.playerService.deletePlayer(playerId).then((deletedPlayerId: String) => {
-  //     this.deleteHandler(deletedPlayerId);
-  //   });
-  // }
-
-  // cancel() {
-  //   this.player = null;
-  // }
+  cancel(): void {
+    this.location.back();
+  }
 }

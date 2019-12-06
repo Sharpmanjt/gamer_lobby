@@ -9,6 +9,13 @@ export class GameService {
 
   constructor(private http:Http) { }
 
+  getGame(gameId: String): Promise<void | Game> {
+    return this.http.get(this.gamesUrl + "/" + gameId)
+               .toPromise()
+               .then(response => response.json() as Game)
+               .catch(this.handleError);
+            
+  }
 
   getGames(): Promise<void | Game[]> {
     return this.http.get(this.gamesUrl)

@@ -4,7 +4,7 @@
   <mat-form-field class="search">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
   </mat-form-field>
-  <button mat-raised-button class="add-btn" (click)="createNewPlayer()">Add New Player</button>
+  <button mat-raised-button class="add-btn" routerLink="/addPlayer">Add New Player</button>
 </div>
 <table mat-table *ngIf="players" [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Player Column -->
@@ -18,7 +18,7 @@
       <th mat-header-cell *matHeaderCellDef> Rank </th>
       <td mat-cell *matCellDef="let player"> {{player.rank}} </td>
     </ng-container>
-  
+
     <!-- Score Column -->
     <ng-container matColumnDef="score">
       <th mat-header-cell *matHeaderCellDef> Score </th>
@@ -47,7 +47,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let player">
-            <button mat-button color="primary" (click)="updatePlayer(player)">Update</button>
+            <button mat-button color="primary" routerLink="/updatePlayer/{{player._id}}">Update</button>
             <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
         </td>   
             <!--<div *ngIf="User.role=='User'">
@@ -64,46 +64,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <br>
-<div class="col-md-5 col-md-offset-2">
-    <player-details
-      [player]="selectedPlayer"
-      [createHandler]="addPlayer"
-      [updateHandler]="updatePlayer"
-      [deleteHandler]="deletePlayer">
-    </player-details>
-</div>
-</div>
-
-<!-- <div class="row">
-    <div class="col-md-5">
-      <h2>Players</h2>
-      <table>
-        <tr>
-          <th *ngFor="let col of columns">
-            {{col}}
-          </th>
-          <th>
-            Actions
-          </th>
-        </tr>
-        <tr *ngFor="let player of players">
-          <td *ngFor="let col of keyColumns" (click)="selectPlayer(player)" >
-            {{player[col]}}
-          </td>
-          <td>
-            <button class="btn btn-info" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
-            <button class="btn btn-danger" *ngIf="player._id" (click)="deletePlayer(player._id)">Delete</button>
-          </td>
-        </tr>
-      </table>
-      <button class="btn btn-warning" (click)="createNewPlayer()">New</button>
-    </div>
-    <div class="col-md-5 col-md-offset-2">
-      <player-details
-        [player]="selectedPlayer"
-        [createHandler]="addPlayer"
-        [updateHandler]="updatePlayer"
-        [deleteHandler]="deletePlayer">
-      </player-details>
-    </div>
-  </div> -->
+</div>   
