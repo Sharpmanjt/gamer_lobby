@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkColumnDef } from '@angular/cdk/table';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailsComponent } from './games/game-details/game-details.component';
 import { GameListComponent } from './games/game-list/game-list.component';
 import { PlayerDetailsComponent } from './players/player-details/player-details.component';
@@ -24,8 +24,8 @@ import {
 } from '@angular/material';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/playerList', pathMatch: 'full'},
+  // { path: 'dashboard', component: DashboardComponent },
   { path: 'gameList', component: GameListComponent },
   { path: 'gameDetail/:id', component: GameDetailsComponent },
   { path: 'playerList', component: PlayerListComponent },
@@ -35,7 +35,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    // DashboardComponent,
     GameDetailsComponent,
     GameListComponent,
     PlayerDetailsComponent,

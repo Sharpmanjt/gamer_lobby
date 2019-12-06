@@ -17,7 +17,7 @@ export class GameListComponent implements OnInit {
   displayedColumns: string[] = ["Title","Platform","Genre","Rating","Publisher","Release", "Status"];
   dataSource: any;
 
-
+  
   constructor(private gameService: GameService) { }
 
   ngOnInit() {

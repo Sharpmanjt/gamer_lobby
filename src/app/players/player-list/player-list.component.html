@@ -1,3 +1,4 @@
+<div class="container">
 <div class="search-add">
   <mat-form-field class="search">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
@@ -69,6 +70,7 @@
       [updateHandler]="updatePlayer"
       [deleteHandler]="deletePlayer">
     </player-details>
+</div>
 </div>
 
 <!-- <div class="row">

@@ -22,7 +22,7 @@ import { CdkColumnDef } from '@angular/cdk/table';
 // import { GameListComponent } from './games/game-list/game-list.component';
 // import { GameDetailsComponent } from './games/game-details/game-details.component';
 // import { LoginButtonComponent } from './users/login-button/login-button.component';
-// import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { CdkColumnDef } from '@angular/cdk/table';
     // GameListComponent,
     // GameDetailsComponent,
     // LoginButtonComponent,
-    // DashboardComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
