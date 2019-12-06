@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  userIsAdmin: boolean;
 
-  constructor() { }
+  constructor() { 
+    this.userIsAdmin = localStorage.getItem("admin") === "true";
+  }
 
   ngOnInit() {
+    this.userIsAdmin = localStorage.getItem("admin") === "true";
   }
 
 }

@@ -1,6 +1,6 @@
 <nav mat-tab-nav-bar animationDuration="0ms">
   <a mat-tab-link routerLink='/playerList'>Players</a>
-  <a mat-tab-link routerLink='/gameList'>Games</a>
+  <a mat-tab-link *ngIf="userIsAdmin" routerLink='/gameList'>Games</a>
 </nav>
 
 
