@@ -5,7 +5,19 @@
 /* .menu {
     float: left;
 }
+*/
+
+.title-button-container {
+    display: flex;
+    justify-content: space-between;
+}
 
 .button {
-    float: right;
-} */
+    flex: 0 1 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.title {
+    flex: 0 1 auto;
+}
