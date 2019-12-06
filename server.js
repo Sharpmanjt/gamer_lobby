@@ -2,7 +2,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
-
 var PLAYERS_COLLECTION = "players";
 var GAMES_COLLECTION = "games";
 
@@ -88,6 +87,7 @@ app.get("/api/games", function(req, res){
     newGame.createDate = new Date();
     if (!req.body.title) {
       handleError(res, "Invalid user input", "Must provide a title.", 400);
+      
     } else {
       db.collection(GAMES_COLLECTION).insertOne(newGame, function(err, doc) {
         if (err) {

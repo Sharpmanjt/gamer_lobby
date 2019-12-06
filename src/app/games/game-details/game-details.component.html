@@ -8,6 +8,10 @@
 <div *ngIf="game" class="row">
     <form class="col-md-12">
 
+        <div *ngIf="errormsg">
+            Please enter a title.
+        </div>
+
         <div class="form-group">
             <label for="game-title">Title:</label>
             <input class="form-control" name="game-title" [(ngModel)]="game.title" placeholder="Title"/>

@@ -14,6 +14,7 @@ export class GameDetailsComponent implements OnInit {
   @Input()
   game: Game;
   gl: GameListComponent;
+  errormsg: String;
   @Input()
   createHandler: Function;
 
@@ -23,13 +24,20 @@ export class GameDetailsComponent implements OnInit {
   @Input()
   deleteHandler: Function;
 
-  constructor(private gameService: GameService, private location:Location) {  this.gl = new GameListComponent(gameService);
-  }
+  constructor(private gameService: GameService) {  }
 
     createGame(game: Game){
-      this.gameService.createGame(game).then((newGame: Game) =>{
-        this.createHandler(newGame);
-      })
+
+      if(game.title=="")
+      {
+        console.log("error");
+        this.errormsg = "no title";
+      }
+      else{
+        this.gameService.createGame(game).then((newGame: Game) =>{
+          this.createHandler(newGame);
+        })
+      }
     }
 
     updateGame(game: Game){
