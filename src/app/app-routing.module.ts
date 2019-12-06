@@ -41,7 +41,8 @@ const routes: Routes = [
   { path: 'users/:id', component: AdminLoginComponent},
 
 
-  { path: 'guestPlayerList', component: PlayerListComponent }
+  { path: 'guestPlayerList', component: PlayerListComponent },
+  { path: 'validatedUser', component: PlayerListComponent }
 ];
 
 @NgModule({

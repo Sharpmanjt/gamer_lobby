@@ -48,13 +48,6 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let player">
-<<<<<<< HEAD
-            <button mat-button color="primary" routerLink="/updatePlayer/{{player._id}}">Update</button>
-            <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
-            <!-- <div *ngIf="User.role=='User'"> -->
-              <button *ngIf="player.status=='0'" mat-button color="warn" routerLink="/joinGame/{{player._id}}">Join Game</button>
-            <!-- </div> -->
-=======
             <div *ngIf="userIsAdmin">
               <button mat-button color="primary" routerLink="/updatePlayer/{{player._id}}">Update</button>
               <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
@@ -62,7 +55,6 @@
             <div *ngIf="!userIsAdmin">
               <button *ngIf="player.status=='Available'" mat-button color="warn" routerLink="/joinGame/{{player._id}}">Join Game</button>
             </div>
->>>>>>> 9503268ffd59d05a42bb3cb90083ceb1858d3c1e
         </td>
     </ng-container>
   

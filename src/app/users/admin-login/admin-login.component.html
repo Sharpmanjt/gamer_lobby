@@ -10,13 +10,13 @@
         <div class="form-group">
             <div *ngIf="errMsg">{{errMsg}}</div>
             <label for="username">Username</label>
-            <input class="form-control" [(ngModel)]="user.username" name="username" />
+            <input class="form-control" name="user-username" [(ngModel)]="user.username" name="username" />
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" [(ngModel)]="user.password" name="password" />
+            <input type="password" class="form-control" name="user-password" [(ngModel)]="user.password" name="password" />
         </div>
-        <button mat-raised-button color="primary" (click)="login()">Login</button>
+        <button mat-raised-button color="primary" (click)="login(user)">Login</button>
         <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>    
     </form>
     </div>

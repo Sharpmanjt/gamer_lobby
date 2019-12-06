@@ -19,7 +19,7 @@ export class AdminLoginComponent implements OnInit {
   user: User;
   checkUser: User;
   x: Number;
-
+  userIsAdmin: boolean;
 
   @Input()
   loginHandler: Function;
@@ -39,46 +39,38 @@ export class AdminLoginComponent implements OnInit {
 
     this.errMsg="";
   
-    if(user.username==""){
-      this.errMsg += "Please enter a valid username.";
+    if(user.username=="" || user.password == ""){
+      this.errMsg += "Please enter a username and password.";
     }
     else{
       this.userService.getUser(user.username).then((checkUser: User)=> 
       {
-
         for (var x in checkUser)
         {
-            if(x["username"] == user.username)
+            if(JSON.stringify(checkUser[x]["username"]) == ("\"" + this.user.username + "\"") && JSON.stringify(checkUser[x]["password"]) == ("\"" + this.user.password + "\""))
             {
               console.log("success");
+              localStorage.setItem("admin", "true");
+              //this.app.ngOnInit();
+              //this.router.navigate(['playerList']); 
+              this.userIsAdmin = true;
+              this.router.navigate(['validatedUser'], { skipLocationChange: false });
+              break;
             }
             else{
-              console.log("fail");
-              console.log(x);
+              this.errMsg = "Username and password combination is invalid. Please try again. "
+              /*console.log("fail");
+              console.log(JSON.stringify(checkUser[x]["username"]));
+              console.log(JSON.stringify(checkUser[x]["password"]));
+              console.log(("\"" + this.user.username + "\""));
+              console.log(("\"" + this.user.password + "\""));*/
             }
         }
-
-        console.log(JSON.stringify(checkUser[0]["username"]));
-
-        this.checkUser = checkUser;
-        console.log(checkUser.username);
-        if(user.username == checkUser.username)
-        {
-          console.log("success");
-          //this.router.navigate(['/dashboard']);
-        }
-        else{
-          console.log("fail");
-        }
-        
       });
     }
 
     // check database
     // if true:
-    localStorage.setItem("admin", "true");
-    //this.app.ngOnInit();
-    this.router.navigate(['playerList']); 
     // else: return message
   }
 
