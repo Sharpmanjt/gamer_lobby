@@ -4,6 +4,7 @@ import { PlayerService } from '../player.service';
 import { PlayerDetailsComponent } from '../player-details/player-details.component';
 import * as _ from 'lodash';
 import { MatTableDataSource } from '@angular/material/table';
+// import { DashboardComponent } from '../../dashboard/dashboard.component'
 
 @Component({
   selector: 'player-list',
@@ -11,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./player-list.component.css'],
   providers: [PlayerService]
 })
+
 export class PlayerListComponent implements OnInit {
   players: Player[]
   selectedPlayer: Player

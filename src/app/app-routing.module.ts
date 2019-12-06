@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkColumnDef } from '@angular/cdk/table';
 
-// import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailsComponent } from './games/game-details/game-details.component';
 import { GameListComponent } from './games/game-list/game-list.component';
 import { PlayerDetailsComponent } from './players/player-details/player-details.component';
@@ -35,7 +35,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    // DashboardComponent,
+    DashboardComponent,
     GameDetailsComponent,
     GameListComponent,
     PlayerDetailsComponent,
