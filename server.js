@@ -4,6 +4,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var PLAYERS_COLLECTION = "players";
+var GAMES_COLLECTION = "games";
 
 var app = express();
 app.use(bodyParser.json());
@@ -55,6 +56,16 @@ function handleError(res, reason, message, code) {
       });
   });
   
+app.get("/api/games", function(req, res){
+  db.collection(GAMES_COLLECTION).find({}).toArray(function(err, docs){
+    if(err){
+      handleError(res, err.message, "Failed to get games.");
+    } else{
+      res.status(200).json(docs);
+    }
+  })
+})
+
   app.post("/api/players", function(req, res) {
     var newPlayer = req.body;
     newPlayer.createDate = new Date();
@@ -72,6 +83,22 @@ function handleError(res, reason, message, code) {
     }
   });
   
+  app.post("/api/games", function(req, res) {
+    var newGame = req.body;
+    newGame.createDate = new Date();
+    if (!req.body.title) {
+      handleError(res, "Invalid user input", "Must provide a title.", 400);
+    } else {
+      db.collection(GAMES_COLLECTION).insertOne(newGame, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to create new game.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+    }
+  });
+
   /*  "/api/players/:id"
    *    GET: find player by id
    *    PUT: update player by id
@@ -87,6 +114,16 @@ function handleError(res, reason, message, code) {
         }
       });
   });
+
+  app.get("/api/games/:id", function(req, res) {
+    db.collection(GAMES_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to get game.");
+        } else {
+          res.status(200).json(doc);
+        }
+      });
+  });
   
   app.put("/api/players/:id", function(req, res) {
     var updateDoc = req.body;
@@ -94,6 +131,19 @@ function handleError(res, reason, message, code) {
     db.collection(PLAYERS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, {$set: updateDoc}, function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to update player.");
+        } else {
+            updateDoc._id = req.params.id;
+            res.status(200).json(updateDoc);
+        }
+    });
+  });
+
+  app.put("/api/games/:id", function(req, res) {
+    var updateDoc = req.body;
+    delete updateDoc._id;
+    db.collection(GAMES_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, {$set: updateDoc}, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to update game.");
         } else {
             updateDoc._id = req.params.id;
             res.status(200).json(updateDoc);

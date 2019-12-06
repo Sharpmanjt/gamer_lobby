@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import {Game} from '../game';
 import { GameService } from '../game.service';
 import * as _ from 'lodash';
@@ -14,7 +14,7 @@ export class GameListComponent implements OnInit {
 
   games: Game[];
   selectedGame: Game;
-  displayedColumns: string[] = ["Title","Platform","Genre","Rating","Publisher","Release", "Status"];
+  displayedColumns: string[] = ["title","platform","genre","rating","publisher","release", "status"];
   dataSource: any;
 
   
@@ -70,7 +70,9 @@ export class GameListComponent implements OnInit {
 
   addGame = (game: Game) => {
     this.selectGame(game);
+    console.log("game created");
     this.getGames();
+    console.log("get games successful");
   }
 
   updateGame = (game:Game) => {

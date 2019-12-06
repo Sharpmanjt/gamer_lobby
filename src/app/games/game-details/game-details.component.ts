@@ -40,9 +40,7 @@ export class GameDetailsComponent implements OnInit {
         this.deleteHandler(deletedGameId)
       })
     }
-
   
-
   ngOnInit() {
   }
 

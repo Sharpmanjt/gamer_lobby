@@ -49,7 +49,7 @@
 
         
             <div class="form-group">
-                    <label for="game-release">Platform:</label>
+                    <label for="game-release">Release:</label>
                     <input class="form-control" name="game-release" [(ngModel)]="game.release" placeholder="Release"/>
             </div>
         
@@ -62,8 +62,9 @@
             </div>
             
         
-            <button type="submit" value="submit">Save</button>
-            <button value="cancel">Cancel</button>
+        <button mat-raised-button color="primary" *ngIf="!game._id" (click)="createGame(game)">Add</button>
+        <button mat-raised-button color="primary" *ngIf="game._id" (click)="updateGame(game)">Update</button>
+        <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
         </form>
     </div>
 </div>

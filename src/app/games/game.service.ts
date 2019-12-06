@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Game} from './game';
+import { Game } from './game';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
@@ -22,6 +22,7 @@ export class GameService {
   }
 
   createGame(newGame: Game): Promise<void | Game> {
+    console.log("got to create game method");
     return this.http.post(this.gamesUrl, newGame)
                .toPromise()
                .then(response => response.json() as Game)
