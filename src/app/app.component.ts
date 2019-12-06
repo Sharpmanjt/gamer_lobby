@@ -11,16 +11,5 @@ export class AppComponent {
   title = 'Gamer Lobby';
   selectedUser: User;
 
-  login(){
-    var user: User = {
-      username: '',
-      role: 'admin'
-    };
-    this.selectUser(user);
-  }
-
-  selectUser(user: User){
-    this.selectedUser = user;
-  }
 }
 

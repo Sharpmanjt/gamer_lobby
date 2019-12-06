@@ -7,6 +7,8 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkColumnDef } from '@angular/cdk/table';
 
+import express, {Request, Response} from 'express';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailsComponent } from './games/game-details/game-details.component';
 import { GameListComponent } from './games/game-list/game-list.component';
@@ -35,8 +37,11 @@ const routes: Routes = [
   { path: 'updatePlayer/:id', component: PlayerDetailsComponent, data: { kind: 'update'} },
   { path: 'addPlayer', component: PlayerDetailsComponent, data: { kind: 'add'} },
   { path: 'joinGame/:id', component: PlayerDetailsComponent, data: {kind: 'join' }},
-  { path: 'login', component: AdminLoginComponent }
-];
+  { path: 'login', component: AdminLoginComponent },
+  { path: 'users/:id', component: AdminLoginComponent}
+]; 
+
+
 
 @NgModule({
   declarations: [
@@ -70,3 +75,4 @@ const routes: Routes = [
   ]
 })
 export class AppRoutingModule { }
+

@@ -2,11 +2,14 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
+var mongoose = require("mongoose");
 var PLAYERS_COLLECTION = "players";
 var GAMES_COLLECTION = "games";
+var USERS_COLLECTION = "users";
 
 var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
@@ -32,6 +35,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
   });
 });
 
+
 // API ROUTES BELOW
 
 // Generic error handler used by all endpoints.
@@ -45,6 +49,19 @@ function handleError(res, reason, message, code) {
    *    POST: creates a new player
    */
   
+  app.post("/api/users", function(req, res)
+  {
+
+    db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs)
+    {
+      if (err) {
+        handleError(res, err.message, "Failed to get users.");
+      } else {
+        res.status(200).json(docs);
+      }
+    });
+  })
+
   app.get("/api/players", function(req, res) {
     db.collection(PLAYERS_COLLECTION).find({}).toArray(function(err, docs) {
         if (err) {
@@ -82,6 +99,18 @@ app.get("/api/games", function(req, res){
     }
   });
   
+  app.post("/api/users", function(req, res) {
+    var newUser = req.body;
+    newUser.createDate = new Date();
+    db.collection(PLAYERS_COLLECTION).insertOne(newPlayer, function(err, doc){
+        if (err) {
+          handleError(res, err.message, "Failed to create new user.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+  });
+
   app.post("/api/games", function(req, res) {
     var newGame = req.body;
     newGame.createDate = new Date();
@@ -105,6 +134,17 @@ app.get("/api/games", function(req, res){
    *    DELETE: deletes player by id
    */
   
+  app.post("/api/users", function(req, res) {
+
+    db.collection(USERS_COLLECTION).findOne({ username: new ObjectID(req.params.username) }, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to get user.");
+        } else {
+          res.status(200).json(doc);
+        }
+      });
+  });
+
   app.get("/api/players/:id", function(req, res) {
     db.collection(PLAYERS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
         if (err) {
