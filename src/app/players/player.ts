@@ -2,8 +2,8 @@ export class Player {
     _id ?: string;
     name: string;
     rank: string;
-    score: number;
+    score: string;
     time: string;
     favoriteGame: string;
-    status: string;
+    status: number;
 }

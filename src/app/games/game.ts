@@ -6,5 +6,5 @@ export class Game {
     rating: number;
     publisher: string;
     release: string;
-    status: boolean;
+    status: string;
 }

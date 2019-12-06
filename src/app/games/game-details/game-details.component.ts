@@ -3,6 +3,7 @@ import { Game } from '../game';
 import { GameService } from '../game.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { isNull } from 'util';
 
 @Component({
   selector: 'game-details',
@@ -12,7 +13,14 @@ import { Location } from '@angular/common';
 export class GameDetailsComponent implements OnInit {
   @Input()
   game: Game;
-  errormsg: String;
+  errTitle: String;
+  errPlatform: String;
+  errGenre: String;
+  errRating: String;
+  errPublisher: String;
+  errRelease: String;
+  errStatus: String;
+  valCheck:boolean;
 
   constructor(
     private gameService: GameService,
@@ -26,7 +34,7 @@ export class GameDetailsComponent implements OnInit {
       switch (data.kind){
         case "add":
           this.game = { title: "", platform:  "", genre:  "", rating: 1, 
-            publisher: "", release: "", status: false }
+            publisher: "", release: "", status: "" }
           break;
         case "update":
           this.getGame();
@@ -45,13 +53,69 @@ export class GameDetailsComponent implements OnInit {
     return this.game;
   }
 
-  createGame(game: Game){
+  validationCheck(game: Game) : boolean
+  {
+    this.valCheck = true;
     if(game.title=="")
     {
-      console.log("error");
-      this.errormsg = "no title";
+      this.errTitle = "Please enter a valid title.";
+      this.valCheck = false;
     }
     else{
+      this.errTitle = "";
+    }
+
+    if(game.publisher=="")
+    {
+      this.errPublisher = "Please enter a valid publisher.";
+      this.valCheck = false;
+    }
+    else{
+      this.errPublisher = "";
+    }
+
+    if(game.genre=="")
+    {
+      this.errGenre = "Please select a genre.";
+      this.valCheck = false;
+    }
+    else{
+      this.errGenre = "";
+    }
+
+    if(game.platform=="")
+    {
+      this.errPlatform = "Please enter a valid publisher.";
+      this.valCheck = false;
+    }
+    else{
+      this.errPlatform = "";
+    }
+
+    if(game.release=="" || isNaN(Number(game.release)))
+    {
+      this.errRelease = "Please enter a valid release year.";
+      this.valCheck = false;
+    }
+    else{
+      this.errRelease = "";
+    }
+
+    if(isNull(game.status))
+    {
+      this.errStatus = "Please enter a valid availability.";
+      this.valCheck = false;
+    }
+    else{
+      this.errStatus = "";
+    }
+
+    return this.valCheck;
+  }
+
+  createGame(game: Game){
+    
+    if(this.validationCheck(game)){
       this.gameService.createGame(game).then((newGame: Game) =>{
         this.router.navigate(['/gameList']);
       })
@@ -59,10 +123,13 @@ export class GameDetailsComponent implements OnInit {
   }
 
   updateGame(game: Game){
-    this.game = game;
-    this.gameService.updateGame(game).then((updatedGame: Game) => {
-      this.router.navigate(['/gameList']);
-    });
+    if(this.validationCheck(game))
+    {
+      this.game = game;
+      this.gameService.updateGame(game).then((updatedGame: Game) => {
+        this.router.navigate(['/gameList']);
+      });
+    }
   }
   
   cancel(): void {

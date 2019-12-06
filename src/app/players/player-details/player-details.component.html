@@ -11,10 +11,12 @@
     <div class="row">
       <form class="col-md-12">
         <div class="form-group">
+          <div *ngIf="errName">{{errName}}</div>
           <label for="player-name">Name</label>
           <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name" />
         </div>
         <div class="form-group">
+            <div *ngIf="errRank">{{errRank}}</div>
           <label for="player-rank">Rank</label>
           <select class="form-control" name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
             <option>1</option>
@@ -30,23 +32,27 @@
           </select>
         </div>
         <div class="form-group">
+          <div *ngIf="errScore">{{errScore}}</div>
           <label for="player-Score">Score</label>
           <input class="form-control" name="player-score" [(ngModel)]="player.score" placeholder="Score" />
         </div>
         <div class="form-group">
+          <div *ngIf="errTime">{{errTime}}</div>
           <label for="player-time">Time</label>
           <input class="form-control" name="player-time" [(ngModel)]="player.time" placeholder="Time" />
         </div>
         <div class="form-group">
+          <div *ngIf="errFavoriteGame">{{errFavoriteGame}}</div>
           <label for="player-favorite-game">Favorite Game</label>
           <input class="form-control" name="player-favorite-game" [(ngModel)]="player.favoriteGame"
             placeholder="Favorite Game" />
         </div>
         <div class="form-group">
+          <div *ngIf="errStatus">{{errStatus}}</div>
           <label for="player-status">Status</label>
           <select class="form-control" name="player-status" [(ngModel)]="player.status" placeholder="Status">
-            <option>Available</option>
-            <option>Unavailable</option>
+            <option value="1">Available</option>
+            <option value="0">Unavailable</option>
           </select>
         </div>
         <button mat-raised-button color="primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
