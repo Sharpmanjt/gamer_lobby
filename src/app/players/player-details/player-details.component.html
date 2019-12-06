@@ -1,51 +1,59 @@
 <div *ngIf="player" class="container">
-<dashboard></dashboard>
-<div class="form">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 *ngIf="player._id">Edit Player</h2>
-      <h2 *ngIf="!player._id">Add Player</h2>
+  <dashboard></dashboard>
+  <div class="form">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 *ngIf="player._id && !playerJoinGame">Edit Player</h2>
+        <h2 *ngIf="!player._id">Add Player</h2>
+        <h2 *ngIf="playerJoinGame">Join Game</h2>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <form class="col-md-12">
-      <div class="form-group">
-        <label for="player-name">Name</label>
-        <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name"/>
-      </div>
-      <div class="form-group">
-        <label for="player-rank">Rank</label>
-        <select  class="form-control" name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
-            <option>1</option><option>2</option>
-            <option>3</option><option>4</option>
-            <option>5</option><option>6</option>
-            <option>7</option><option>8</option>
-            <option>9</option><option>10</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="player-Score">Score</label>
-        <input class="form-control" name="player-score" [(ngModel)]="player.score" placeholder="Score"/>
-      </div>
-      <div class="form-group">
-        <label for="player-time">Time</label>
-        <input class="form-control" name="player-time" [(ngModel)]="player.time" placeholder="Time"/>
-      </div>
-      <div class="form-group">
-        <label for="player-favorite-game">Favorite Game</label>
-        <input class="form-control" name="player-favorite-game" [(ngModel)]="player.favoriteGame" placeholder="Favorite Game"/>
-      </div>
-      <div class="form-group">
-        <label for="player-status">Status</label>
-        <select class="form-control" name="player-status" [(ngModel)]="player.status" placeholder="Status">
+    <div class="row">
+      <form class="col-md-12">
+        <div class="form-group">
+          <label for="player-name">Name</label>
+          <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name" />
+        </div>
+        <div class="form-group">
+          <label for="player-rank">Rank</label>
+          <select class="form-control" name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="player-Score">Score</label>
+          <input class="form-control" name="player-score" [(ngModel)]="player.score" placeholder="Score" />
+        </div>
+        <div class="form-group">
+          <label for="player-time">Time</label>
+          <input class="form-control" name="player-time" [(ngModel)]="player.time" placeholder="Time" />
+        </div>
+        <div class="form-group">
+          <label for="player-favorite-game">Favorite Game</label>
+          <input class="form-control" name="player-favorite-game" [(ngModel)]="player.favoriteGame"
+            placeholder="Favorite Game" />
+        </div>
+        <div class="form-group">
+          <label for="player-status">Status</label>
+          <select class="form-control" name="player-status" [(ngModel)]="player.status" placeholder="Status">
             <option>Available</option>
             <option>Unavailable</option>
-        </select>
-      </div>
-      <button mat-raised-button color="primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
-      <button mat-raised-button color="primary" *ngIf="player._id" (click)="updatePlayer(player)">Update</button>
-      <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
-    </form>
+          </select>
+        </div>
+        <button mat-raised-button color="primary" *ngIf="!player._id" (click)="createPlayer(player)">Add</button>
+        <button mat-raised-button color="primary" *ngIf="player._id && !playerJoinGame" (click)="updatePlayer(player)">Update</button>
+        <button mat-raised-button color="primary" *ngIf="joinGame" (click)="joinGame(player)">Join</button>
+        <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+      </form>
+    </div>
   </div>
-</div>
 </div>

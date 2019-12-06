@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'playerList', component: PlayerListComponent },
   { path: 'updatePlayer/:id', component: PlayerDetailsComponent, data: { kind: 'update'} },
   { path: 'addPlayer', component: PlayerDetailsComponent, data: { kind: 'add'} },
+  { path: 'joinGame/:id', component: PlayerDetailsComponent, data: {kind: 'join' }},
   { path: 'login', component: AdminLoginComponent }
 ];
 

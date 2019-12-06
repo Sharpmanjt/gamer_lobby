@@ -13,6 +13,8 @@ export class PlayerDetailsComponent implements OnInit{
   @Input()
   player: Player;
 
+  playerJoinGame: boolean;
+
   constructor(
     private playerService: PlayerService,
     private route: ActivatedRoute,
@@ -28,6 +30,11 @@ export class PlayerDetailsComponent implements OnInit{
           break;
         case "update":
           this.getPlayer();
+          break;
+        case "join":
+          this.getPlayer();
+          this.playerJoinGame = true;
+          
           break;
       }
     })  
@@ -54,6 +61,10 @@ export class PlayerDetailsComponent implements OnInit{
     this.playerService.updatePlayer(player).then((updatedPlayer: Player) => {
       this.router.navigate(['/playerList']);
     });
+  }
+
+  joinGame(player: Player): void {
+    this.player = player;
   }
 
   cancel(): void {
