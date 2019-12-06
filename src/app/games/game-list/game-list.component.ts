@@ -14,7 +14,7 @@ export class GameListComponent implements OnInit {
 
   games: Game[];
   selectedGame: Game;
-  displayedColumns: string[] = ["title","platform","genre","rating","publisher","release", "status"];
+  displayedColumns: string[] = ["title","platform","genre","rating","publisher","release", "status", "actions"];
   dataSource: any;
 
   

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Game } from '../game';
 import { GameService } from '../game.service';
+import { GameListComponent } from '../game-list/game-list.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'game-details',
@@ -11,7 +13,7 @@ export class GameDetailsComponent implements OnInit {
 
   @Input()
   game: Game;
-
+  gl: GameListComponent;
   @Input()
   createHandler: Function;
 
@@ -21,7 +23,8 @@ export class GameDetailsComponent implements OnInit {
   @Input()
   deleteHandler: Function;
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private location:Location) {  this.gl = new GameListComponent(gameService);
+  }
 
     createGame(game: Game){
       this.gameService.createGame(game).then((newGame: Game) =>{
@@ -41,6 +44,13 @@ export class GameDetailsComponent implements OnInit {
       })
     }
   
+    cancel()
+    {
+      //window.location.href = '';
+      console.log('back');
+      window.location.reload;
+    }
+
   ngOnInit() {
   }
 

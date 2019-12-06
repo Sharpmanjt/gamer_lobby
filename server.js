@@ -160,3 +160,13 @@ app.get("/api/games", function(req, res){
         }
         });
   });
+
+  app.delete("/api/games/:id", function(req, res) {
+    db.collection(GAMES_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete game.");
+        } else {
+            res.status(200).json(req.params.id);
+        }
+        });
+  });
