@@ -26,7 +26,7 @@ export class PlayerDetailsComponent implements OnInit{
     this.route.data.subscribe(data => {
       switch (data.kind){
         case "add":
-          this.player = { name: '', rank: '', score: 0, time: '', favoriteGame: '', status: '' };
+          this.player = { name: '', rank: '', score: 0, time: '', favoriteGame: '', status: '', currentGame: '' };
           break;
         case "update":
           this.getPlayer();
@@ -34,7 +34,6 @@ export class PlayerDetailsComponent implements OnInit{
         case "join":
           this.getPlayer();
           this.playerJoinGame = true;
-          
           break;
       }
     })  

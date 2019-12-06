@@ -1,7 +1,8 @@
 <div class='container'>
   <div class="title-button-container">
     <h1 class="title">{{title}}</h1>
-    <button mat-raised-button color="primary" routerLink="login" class="button">Login</button>
+    <button *ngIf="!userIsAdmin" mat-raised-button color="primary" routerLink="login" class="button">Login</button>
+    <button *ngIf="userIsAdmin" mat-raised-button color="primary" (click)="logoff()" class="button">Logout</button>
   </div>
 </div>
 <router-outlet></router-outlet>

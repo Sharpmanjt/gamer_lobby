@@ -35,7 +35,8 @@ const routes: Routes = [
   { path: 'updatePlayer/:id', component: PlayerDetailsComponent, data: { kind: 'update'} },
   { path: 'addPlayer', component: PlayerDetailsComponent, data: { kind: 'add'} },
   { path: 'joinGame/:id', component: PlayerDetailsComponent, data: {kind: 'join' }},
-  { path: 'login', component: AdminLoginComponent }
+  { path: 'login', component: AdminLoginComponent },
+  { path: 'guestPlayerList', component: PlayerListComponent }
 ];
 
 @NgModule({
@@ -48,7 +49,7 @@ const routes: Routes = [
     AdminLoginComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload'}),
     BrowserModule,
     FormsModule,
     HttpModule,

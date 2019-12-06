@@ -6,4 +6,5 @@ export class Player {
     time: string;
     favoriteGame: string;
     status: string;
+    currentGame: string;
 }

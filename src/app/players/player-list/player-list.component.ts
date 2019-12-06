@@ -15,10 +15,16 @@ export class PlayerListComponent implements OnInit {
   selectedPlayer: Player
   displayedColumns: string[] = ['name', 'rank', 'score', 'time', 'favoriteGame', 'status', 'actions']
   dataSource: any;
+  userIsAdmin: boolean;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(
+    private playerService: PlayerService,
+    ) { 
+      this.userIsAdmin = localStorage.getItem("admin") === "true";
+    }
 
   ngOnInit() {
+    this.userIsAdmin = localStorage.getItem("admin") === "true";
     this.getPlayers();
   }
 
