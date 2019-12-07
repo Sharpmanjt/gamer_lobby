@@ -3,30 +3,23 @@
     <div class="form">
         <div class="row">
             <div class="col-md-12">
-                <h2 *ngIf="game._id">Edit Game</h2>
+                <h2 *ngIf="game._id">Update Game</h2>
                 <h2 *ngIf="!game._id">Add Game</h2>
             </div>
         </div>
         <div class="row">
             <form class="col-md-12">
-
-
                 <div class="form-group">
                     <div *ngIf="errTitle">{{errTitle}}</div>
                     <label for="game-title">Title:</label>
                     <input class="form-control" name="game-title" [(ngModel)]="game.title" placeholder="Title" />
-
-                    
-
                 </div>
-
                 <div class="form-group">
                     <div *ngIf="errPlatform">{{errPlatform}}</div>
                     <label for="game-platform">Platform:</label>
                     <input class="form-control" name="game-platform" [(ngModel)]="game.platform"
                         placeholder="Platform" />
                 </div>
-
                 <div class="form-group">
                     <div *ngIf="errGenre">{{errGenre}}</div>
                     <label for="game-genre">Genre:</label>
@@ -40,7 +33,6 @@
                         <option>Strategy</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="game-rating">Rating:</label>
                     <select class="form-control" name="game-rating" [(ngModel)]="game.rating" placeholder="Rating">
@@ -51,29 +43,25 @@
                         <option>5</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <div *ngIf="errPublisher">{{errPublisher}}</div>
                     <label for="game-publisher">Publisher:</label>
                     <input class="form-control" name="game-publisher" [(ngModel)]="game.publisher"
                         placeholder="Publisher" />
                 </div>
-
                 <div class="form-group">
                     <div *ngIf="errRelease">{{errRelease}}</div>
                     <label for="game-release">Release:</label>
                     <input class="form-control" name="game-release" [(ngModel)]="game.release" placeholder="Release" />
                 </div>
-
                 <div class="form-group">
                     <div *ngIf="errStatus">{{errStatus}}</div>
-                    <label for="game-available">Available:</label>
+                    <label for="game-status">Status:</label>
                     <select class="form-control" name="game-status" [(ngModel)]="game.status">
-                        <option value='true'>True</option>
-                        <option value='false'>False</option>
+                        <option value='true'>Active</option>
+                        <option value='false'>Inactive</option>
                     </select>
                 </div>
-
                 <button mat-raised-button color="primary" *ngIf="!game._id" (click)="createGame(game)">Add</button>
                 <button mat-raised-button color="primary" *ngIf="game._id" (click)="updateGame(game)">Update</button>
                 <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>

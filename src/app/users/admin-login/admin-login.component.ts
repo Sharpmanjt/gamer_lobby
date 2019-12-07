@@ -3,8 +3,6 @@ import { UserService } from '../user.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Request, Response} from '@angular/http';
-import { stringify } from 'querystring';
 import { AppComponent } from '../../app.component';
 
 @Component({
@@ -49,29 +47,18 @@ export class AdminLoginComponent implements OnInit {
         {
             if(JSON.stringify(checkUser[x]["username"]) == ("\"" + this.user.username + "\"") && JSON.stringify(checkUser[x]["password"]) == ("\"" + this.user.password + "\""))
             {
-              console.log("success");
               localStorage.setItem("admin", "true");
-              //this.app.ngOnInit();
-              //this.router.navigate(['playerList']); 
+              this.app.ngOnInit();
               this.userIsAdmin = true;
-              this.router.navigate(['validatedUser'], { skipLocationChange: false });
+              this.router.navigate(['/playerList'], { skipLocationChange: false });
               break;
             }
             else{
               this.errMsg = "Username and password combination is invalid. Please try again. "
-              /*console.log("fail");
-              console.log(JSON.stringify(checkUser[x]["username"]));
-              console.log(JSON.stringify(checkUser[x]["password"]));
-              console.log(("\"" + this.user.username + "\""));
-              console.log(("\"" + this.user.password + "\""));*/
             }
         }
       });
     }
-
-    // check database
-    // if true:
-    // else: return message
   }
 
   cancel(): void {

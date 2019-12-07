@@ -2,7 +2,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
-var mongoose = require("mongoose");
 var PLAYERS_COLLECTION = "players";
 var GAMES_COLLECTION = "games";
 var USERS_COLLECTION = "users";

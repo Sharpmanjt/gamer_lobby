@@ -1,15 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
+import { GameService } from '../../games/game.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { isNull } from 'util';
-import { isNgContainer } from '@angular/compiler';
+import { Game } from 'src/app/games/game';
 
 @Component({
   selector: 'player-details',
   templateUrl: './player-details.component.html',
-  styleUrls: ['./player-details.component.css']
+  styleUrls: ['./player-details.component.css'],
+  providers: [PlayerService, GameService]
 })
 export class PlayerDetailsComponent implements OnInit{
   valPlayerCheck: boolean;
@@ -24,9 +25,12 @@ export class PlayerDetailsComponent implements OnInit{
   player: Player;
 
   playerJoinGame: boolean;
+  games: Game[];
+  ranks: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   constructor(
     private playerService: PlayerService,
+    private gameService: GameService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
@@ -36,7 +40,7 @@ export class PlayerDetailsComponent implements OnInit{
     this.route.data.subscribe(data => {
       switch (data.kind){
         case "add":
-          this.player = { name: '', rank: '', score: '', time: '', favoriteGame: '', status: -1, currentGame: '' };
+          this.player = { name: '', rank: '', score: "", time: '', favoriteGame: '', status: -1, currentGame: '' };
           break;
         case "update":
           this.getPlayer();
@@ -46,6 +50,7 @@ export class PlayerDetailsComponent implements OnInit{
           this.playerJoinGame = true;
           break;
       }
+      this.getGames();
     })  
   }
 
@@ -56,8 +61,7 @@ export class PlayerDetailsComponent implements OnInit{
     {
       this.errName = "Please enter a valid name.";
       this.valPlayerCheck = false;
-    }
-    else{
+    } else {
       this.errName = "";
     }
 
@@ -65,9 +69,7 @@ export class PlayerDetailsComponent implements OnInit{
     {
       this.errRank = "Please select a rank.";
       this.valPlayerCheck = false;
-    }
-
-    else{
+    } else {
       this.errRank = "";
     }
 
@@ -75,8 +77,7 @@ export class PlayerDetailsComponent implements OnInit{
     {
       this.errFavoriteGame = "Please enter a favorite game.";
       this.valPlayerCheck = false;
-    }
-    else{
+    } else {
       this.errFavoriteGame = "";
     }
 
@@ -84,17 +85,15 @@ export class PlayerDetailsComponent implements OnInit{
     {
       this.errScore = "Please enter a valid score.";
       this.valPlayerCheck = false;
-    }
-    else{
+    } else {
       this.errScore = "";
     }
 
-    if(player.time == "" || isNaN(Number(player.time)))
+    if(player.time == "")
     {
       this.errTime = "Please enter a valid amount of time.";
       this.valPlayerCheck = false;
-    }
-    else{
+    } else {
       this.errTime = "";
     }
 
@@ -102,12 +101,29 @@ export class PlayerDetailsComponent implements OnInit{
     {
       this.errStatus = "Please enter a valid availability.";
       this.valPlayerCheck = false;
+    } else {
+      this.errStatus = "";
     }
-    else{
+
+    if(this.playerJoinGame && player.currentGame == "")
+    {
+      this.errStatus = "Please enter a valid game.";
+      this.valPlayerCheck = false;
+    } else {
       this.errStatus = "";
     }
 
     return this.valPlayerCheck;
+  }
+
+  getGames(){
+    this.gameService.getGames()
+    .then((games: Game[]) => {
+      this.games = games.map((game) => {
+        return game;
+      })
+    })
+    return this.games;
   }
 
   getPlayer() {
@@ -140,7 +156,13 @@ export class PlayerDetailsComponent implements OnInit{
   }
 
   joinGame(player: Player): void {
-    this.player = player;
+    if(this.validationCheck(player)){
+      this.player = player;
+      this.player.status = 0;
+      this.playerService.updatePlayer(player).then((updatePlayer: Player) => {
+        this.router.navigate(['/playerList']);
+      })
+    }
   }
 
   cancel(): void {

@@ -11,9 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
   providers: [PlayerService]
 })
 export class PlayerListComponent implements OnInit {
-  players: Player[]
-  selectedPlayer: Player
-  displayedColumns: string[] = ['name', 'rank', 'score', 'time', 'favoriteGame', 'status', 'actions']
+  players: Player[];
+  selectedPlayer: Player;
+  displayedColumns: string[] = ['name', 'rank', 'score', 'time', 'favoriteGame', 'status', 'actions'];
   dataSource: any;
   userIsAdmin: boolean;
 

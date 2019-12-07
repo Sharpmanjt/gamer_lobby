@@ -1,6 +1,25 @@
 <nav mat-tab-nav-bar animationDuration="0ms">
-  <a mat-tab-link routerLink='/playerList'>Players</a>
-  <a mat-tab-link *ngIf="userIsAdmin" routerLink='/gameList'>Games</a>
+  <a mat-tab-link 
+    *ngIf="!userIsAdmin" 
+    routerLink='/playerList'
+    routerLinkActive 
+    #rla1="routerLinkActive"
+    [active]="rla1.isActive">Player Rankings
+  </a>
+  <a mat-tab-link 
+    *ngIf="userIsAdmin" 
+    routerLink='/playerList'
+    routerLinkActive 
+    #rla2="routerLinkActive"
+    [active]="rla2.isActive">Players
+  </a>
+  <a mat-tab-link 
+    *ngIf="userIsAdmin" 
+    routerLink='/gameList'
+    routerLinkActive 
+    #rla3="routerLinkActive"
+    [active]="rla3.isActive">Games
+  </a>
 </nav>
 
 

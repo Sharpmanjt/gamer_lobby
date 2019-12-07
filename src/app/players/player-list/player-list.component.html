@@ -53,11 +53,11 @@
               <button mat-button color="warn" (click)="deletePlayer(player._id)">Delete</button>
             </div>
             <div *ngIf="!userIsAdmin">
-              <button *ngIf="player.status=='Available'" mat-button color="warn" routerLink="/joinGame/{{player._id}}">Join Game</button>
+              <button *ngIf="player.status=='1'" mat-button color="warn" routerLink="/joinGame/{{player._id}}">Join Game</button>
             </div>
         </td>
-    </ng-container>
-  
+    </ng-container> 
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

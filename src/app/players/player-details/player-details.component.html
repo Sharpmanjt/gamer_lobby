@@ -3,7 +3,7 @@
   <div class="form">
     <div class="row">
       <div class="col-md-12">
-        <h2 *ngIf="player._id && !playerJoinGame">Edit Player</h2>
+        <h2 *ngIf="player._id && !playerJoinGame">Update Player</h2>
         <h2 *ngIf="!player._id">Add Player</h2>
         <h2 *ngIf="playerJoinGame">Join Game</h2>
       </div>
@@ -12,47 +12,51 @@
       <form class="col-md-12">
         <div class="form-group">
           <div *ngIf="errName">{{errName}}</div>
-          <label for="player-name">Name</label>
-          <input class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name" />
+          <label for="player-name">Player:</label>
+          <input *ngIf="!playerJoinGame" class="form-control" name="player-name" [(ngModel)]="player.name" placeholder="Name" />
+          <h5 *ngIf="playerJoinGame" name="player-name">{{player.name}}</h5>
         </div>
         <div class="form-group">
             <div *ngIf="errRank">{{errRank}}</div>
-          <label for="player-rank">Rank</label>
-          <select class="form-control" name="player-rank" [(ngModel)]="player.rank" placeholder="Rank">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
+          <label for="player-rank">Rank:</label>
+          <select *ngIf="!playerJoinGame" class="form-control" name="player-rank" [(ngModel)]="player.rank">
+            <option *ngFor="let rank of ranks" value="{{rank}}">{{rank}}</option>
           </select>
+          <h5 *ngIf="playerJoinGame" name="player-rank">{{player.rank}}</h5>
         </div>
         <div class="form-group">
           <div *ngIf="errScore">{{errScore}}</div>
-          <label for="player-Score">Score</label>
-          <input class="form-control" name="player-score" [(ngModel)]="player.score" placeholder="Score" />
+          <label for="player-Score">Score:</label>
+          <input *ngIf="!playerJoinGame" class="form-control" name="player-score" [(ngModel)]="player.score" placeholder="Score" />
+          <h5 *ngIf="playerJoinGame" name="player-score">{{player.score}}</h5>
         </div>
         <div class="form-group">
           <div *ngIf="errTime">{{errTime}}</div>
-          <label for="player-time">Time</label>
-          <input class="form-control" name="player-time" [(ngModel)]="player.time" placeholder="Time" />
+          <label for="player-time">Time:</label>
+          <input *ngIf="!playerJoinGame" class="form-control" name="player-time" [(ngModel)]="player.time" placeholder="Time" />
+          <h5 *ngIf="playerJoinGame" name="player-time">{{player.time}}</h5>
         </div>
         <div class="form-group">
           <div *ngIf="errFavoriteGame">{{errFavoriteGame}}</div>
-          <label for="player-favorite-game">Favorite Game</label>
-          <input class="form-control" name="player-favorite-game" [(ngModel)]="player.favoriteGame"
-            placeholder="Favorite Game" />
+          <label for="player-favorite-game">Favorite Game:</label>
+          <select *ngIf="!playerJoinGame" class="form-control" name="player-favorite-game" [(ngModel)]="player.favoriteGame">
+              <option *ngFor="let game of games" value="{{game.title}}">{{game.title}}</option>
+            </select>
+          <h5 *ngIf="playerJoinGame" name="player-favorite-game">{{player.favoriteGame}}</h5>
         </div>
-        <div class="form-group">
+        <div *ngIf="!playerJoinGame" class="form-group">
           <div *ngIf="errStatus">{{errStatus}}</div>
-          <label for="player-status">Status</label>
-          <select class="form-control" name="player-status" [(ngModel)]="player.status" placeholder="Status">
+          <label for="player-status">Status:</label>
+          <select class="form-control" name="player-status" [(ngModel)]="player.status">
             <option value="1">Available</option>
             <option value="0">Unavailable</option>
+          </select>
+        </div>
+        <div *ngIf="playerJoinGame" class="form-group">
+          <div *ngIf="errStatus">{{errStatus}}</div>
+          <label for="player-status">Game:</label>
+          <select class="form-control" name="player-game" [(ngModel)]="player.currentGame">
+            <option *ngFor="let game of games" value="{{game.title}}">{{game.title}}</option>
           </select>
         </div>
         <button mat-raised-button color="primary" *ngIf="!player._id && !playerJoinGame" (click)="createPlayer(player)">Add</button>

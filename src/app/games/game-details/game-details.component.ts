@@ -60,8 +60,7 @@ export class GameDetailsComponent implements OnInit {
     {
       this.errTitle = "Please enter a valid title.";
       this.valCheck = false;
-    }
-    else{
+    } else {
       this.errTitle = "";
     }
 
@@ -69,8 +68,7 @@ export class GameDetailsComponent implements OnInit {
     {
       this.errPublisher = "Please enter a valid publisher.";
       this.valCheck = false;
-    }
-    else{
+    } else {
       this.errPublisher = "";
     }
 
@@ -78,8 +76,7 @@ export class GameDetailsComponent implements OnInit {
     {
       this.errGenre = "Please select a genre.";
       this.valCheck = false;
-    }
-    else{
+    } else {
       this.errGenre = "";
     }
 
@@ -87,8 +84,7 @@ export class GameDetailsComponent implements OnInit {
     {
       this.errPlatform = "Please enter a valid publisher.";
       this.valCheck = false;
-    }
-    else{
+    } else {
       this.errPlatform = "";
     }
 
@@ -96,8 +92,7 @@ export class GameDetailsComponent implements OnInit {
     {
       this.errRelease = "Please enter a valid release year.";
       this.valCheck = false;
-    }
-    else{
+    } else {
       this.errRelease = "";
     }
 
@@ -105,8 +100,7 @@ export class GameDetailsComponent implements OnInit {
     {
       this.errStatus = "Please enter a valid availability.";
       this.valCheck = false;
-    }
-    else{
+    } else {
       this.errStatus = "";
     }
 
@@ -114,7 +108,6 @@ export class GameDetailsComponent implements OnInit {
   }
 
   createGame(game: Game){
-    
     if(this.validationCheck(game)){
       this.gameService.createGame(game).then((newGame: Game) =>{
         this.router.navigate(['/gameList']);

@@ -7,8 +7,6 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkColumnDef } from '@angular/cdk/table';
 
-import express, {Request, Response} from 'express';
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameDetailsComponent } from './games/game-details/game-details.component';
 import { GameListComponent } from './games/game-list/game-list.component';
@@ -39,10 +37,7 @@ const routes: Routes = [
   { path: 'joinGame/:id', component: PlayerDetailsComponent, data: {kind: 'join' }},
   { path: 'login', component: AdminLoginComponent },
   { path: 'users/:id', component: AdminLoginComponent},
-
-
   { path: 'guestPlayerList', component: PlayerListComponent },
-  { path: 'validatedUser', component: PlayerListComponent }
 ];
 
 @NgModule({
