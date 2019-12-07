@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dashboard',
@@ -8,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   userIsAdmin: boolean;
 
-  constructor() { 
+  constructor(private router: Router) { 
     this.userIsAdmin = localStorage.getItem("admin") === "true";
   }
 
   ngOnInit() {
     this.userIsAdmin = localStorage.getItem("admin") === "true";
+    if(!this.userIsAdmin)
+    {
+      this.router.navigate(['/playerList'], { skipLocationChange: false });
+    }
   }
 
 }

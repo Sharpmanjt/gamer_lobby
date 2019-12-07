@@ -11,10 +11,6 @@ export class UserService {
   constructor(private http: Http) { }
 
   getUser(username: String): Promise<void | User> {
-    console.log(this.http.post(this.usersUrl, username)
-    .toPromise()
-    .then(response => response.json() as User));
-
     return this.http.post(this.usersUrl, username)
                .toPromise()
                .then(response => response.json() as User)

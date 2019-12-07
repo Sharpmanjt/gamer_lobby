@@ -17,6 +17,8 @@ import { AdminLoginComponent } from './users/admin-login/admin-login.component';
 import { PlayerService } from './players/player.service';
 import { GameService } from './games/game.service';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 import {  
   MatTabsModule, 
   MatButtonModule, 
@@ -68,7 +70,8 @@ const routes: Routes = [
   providers: [
     CdkColumnDef,
     PlayerService,
-    GameService
+    GameService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ]
 })
 export class AppRoutingModule { }
