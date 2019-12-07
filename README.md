@@ -1,3 +1,7 @@
+#Project completed by:
+#Jeremy Thibeau 101157911
+#Veronyque Lemieux 101106553
+
 # AngularGamerLobby
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
