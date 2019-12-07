@@ -5,7 +5,7 @@
     <button *ngIf="!userIsAdmin" mat-raised-button color="primary" routerLink="login" class="button">Login</button>
 
     <div *ngIf="userIsAdmin">
-    Adminitrator&nbsp;<button *ngIf="userIsAdmin" mat-raised-button color="primary" (click)="logoff()" class="button">Logout</button>
+    Administrator&nbsp;<button *ngIf="userIsAdmin" mat-raised-button color="primary" (click)="logoff()" class="button">Logout</button>
     </div>
 
   </div>
