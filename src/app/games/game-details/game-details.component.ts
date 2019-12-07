@@ -31,11 +31,6 @@ export class GameDetailsComponent implements OnInit {
   ) { this.userIsAdmin = localStorage.getItem("admin") === "true"; }
 
   ngOnInit(): void {
-    this.userIsAdmin = localStorage.getItem("admin") === "true";
-    if(!this.userIsAdmin)
-    {
-      this.router.navigate(['/playerList'], { skipLocationChange: false });
-    }
     this.route.data.subscribe(data => {
       switch (data.kind){
         case "add":
