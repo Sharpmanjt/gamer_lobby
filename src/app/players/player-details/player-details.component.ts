@@ -20,6 +20,7 @@ export class PlayerDetailsComponent implements OnInit{
   errTime: string;
   errFavoriteGame: string;
   errStatus: string;
+  userIsAdmin: boolean;
 
   @Input()
   player: Player;
@@ -34,9 +35,14 @@ export class PlayerDetailsComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
-  ) { }
+  ) { this.userIsAdmin = localStorage.getItem("admin") === "true";}
 
   ngOnInit(): void {
+    this.userIsAdmin = localStorage.getItem("admin") === "true";
+    if(this.userIsAdmin)
+    {
+      this.router.navigate(['/playerList'], { skipLocationChange: false });
+    }
     this.route.data.subscribe(data => {
       switch (data.kind){
         case "add":

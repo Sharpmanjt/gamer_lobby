@@ -21,15 +21,21 @@ export class GameDetailsComponent implements OnInit {
   errRelease: String;
   errStatus: String;
   valCheck:boolean;
+  userIsAdmin: boolean;
 
   constructor(
     private gameService: GameService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
-  ) {  }
+  ) { this.userIsAdmin = localStorage.getItem("admin") === "true"; }
 
   ngOnInit(): void {
+    this.userIsAdmin = localStorage.getItem("admin") === "true";
+    if(!this.userIsAdmin)
+    {
+      this.router.navigate(['/playerList'], { skipLocationChange: false });
+    }
     this.route.data.subscribe(data => {
       switch (data.kind){
         case "add":

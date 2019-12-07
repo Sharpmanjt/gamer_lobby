@@ -3,6 +3,7 @@ import { Game } from '../game';
 import { GameService } from '../game.service';
 import * as _ from 'lodash';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'game-list',
@@ -15,10 +16,17 @@ export class GameListComponent implements OnInit {
   selectedGame: Game;
   displayedColumns: string[] = ["title","platform","genre","rating","publisher","release", "status", "actions"];
   dataSource: any;
+  userIsAdmin: boolean;
   
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private router: Router) 
+  { this.userIsAdmin = localStorage.getItem("admin") === "true";}
 
   ngOnInit() {
+    this.userIsAdmin = localStorage.getItem("admin") === "true";
+    if(!this.userIsAdmin)
+    {
+      this.router.navigate(['/playerList'], { skipLocationChange: false });
+    }
     this.getGames();
   }
 
