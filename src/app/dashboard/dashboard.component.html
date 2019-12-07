@@ -1,10 +1,7 @@
 <nav mat-tab-nav-bar animationDuration="0ms">
   <a mat-tab-link 
     *ngIf="!userIsAdmin" 
-    routerLink='/playerList'
-    routerLinkActive 
-    #rla1="routerLinkActive"
-    [active]="rla1.isActive">Player Rankings
+    routerLink='/playerList'>Player Rankings
   </a>
   <a mat-tab-link 
     *ngIf="userIsAdmin" 
